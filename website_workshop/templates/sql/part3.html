@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>SQL injection part 3</h3>
+
+    <p>Interesting. An error appeared at the top talking about a syntax error!</p>
+
+    <p>
+        Something like this is very typical when an input form exposes an SQL injection vulnerability (and it tells you
+        the SQL error). The reason why can be found in the code that is responsible for the login logic:
+    </p>
+
+    <pre>
+        <code class="language-python">
+    try:
+        r = db.execute("SELECT * FROM users WHERE name = " + form.username.data + ';').fetchone()
+    except Error as e:
+        flash('Failed to log in: ' + str(e), 'error')
+        </code>
+    </pre>
+
+    <p>
+        Here, the developer (me) has just plainly concatenated your input to the end of the SQL query. So instead of the
+        following:
+    </p>
+
+    <pre>
+        <code class="language-sql">
+    SELECT * FROM users WHERE name = '{{user}}';
+        </code>
+    </pre>
+
+    <p>
+        You have instead injected your own SQL
+    </p>
+
+
+    <pre>
+        <code class="language-sql">
+    SELECT * FROM users WHERE name = '' test--';
+        </code>
+    </pre>
+
+    <p>The first single quote (') you added closed the previous string.</p>
+
+    <p>The double dashes (--) indicate a quote, and makes SQLite ignore the rest of the statement.</p>
+
+    <p>The 'test' part is not a valid SQL syntax, so SQLite complains about it.</p>
+
+    <p>
+        How about we try logging in without providing an account? This is a very common thing to do as well.
+        Looking at the code above, it looks like we are just getting the first row of whatever the query returns.
+        This will often end up being the admin account.
+    </p>
+
+    <p>
+        Try entering the following:
+    </p>
+
+
+    <pre>
+        <code class="language-sql">
+    ' or 1--
+        </code>
+    </pre>
+
+
+    <p>The single quote again closes the previous string</p>
+    <p>'or 1' is our own condition. It basically means "or true", which is always true.</p>
+    <p>-- again makes SQLite ignore the rest of the statement</p>
+
+
+    <p>As a result your query will look like this:</p>
+
+
+    <pre>
+        <code class="language-sql">
+    SELECT * FROM users WHERE name = '' or 1--';
+        </code>
+    </pre>
+
+    <p>Which means we are selecting all users where one of the following is true:</p>
+    <ul>
+        <li>The name is equal to ''</li>
+        <li>True</li>
+    </ul>
+
+    <p>Since True is always True, we get every row.</p>
+
+    <form method="post">
+        <label for="username">Username</label>
+        {{ form.username }}
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock %}

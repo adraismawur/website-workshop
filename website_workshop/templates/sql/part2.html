@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>SQL injection part 2</h3>
+
+    <p>Great! There should be a green banner at the top telling you you logged in.</p>
+
+    <p>
+        If a user wants to do something malicious, they would first try just adding some garbage to the login to see if
+        the application returns anything interesting.
+    </p>
+
+    <p>In the below form, try entering the following:</p>
+
+    <pre>
+        <code class="language-sql">
+            ' test--
+        </code>
+    </pre>
+
+
+    <form method="post">
+        <label for="username">Username</label>
+        {{ form.username }}
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>SQL injection part 5</h3>
+
+    <p>
+        We got a different error now: "You can only execute one statement at a time.". Turns out the database library we
+        are using already has some form of security built-in: it really only expects one query at a time.
+    </p>
+
+    <p>As a reminder, this was the query you put in:</p>
+
+    <pre>
+        <code class="language-sql">
+    '; INSERT INTO users values ('test');--
+        </code>
+    </pre>
+
+    <p>And this was the code:</p>
+
+
+    <pre>
+        <code class="language-python">
+    try:
+        r = db.execute("SELECT * FROM users WHERE name = " + form.username.data + ';').fetchone()
+    except Error as e:
+        flash('Failed to log in: ' + str(e), 'error')
+        </code>
+    </pre>
+
+    As a result, we got the following SQL:
+
+    <pre>
+        <code class="language-sql">
+    SELECT * FROM users WHERE name = ''; INSERT INTO users values ('test');--'
+        </code>
+    </pre>
+
+    <p>Two queries! Of course, since you have logged in as an admin you could probably add yourself in this imaginary
+        application if you wanted to.</p>
+
+    <p>Let's try it again, except instead of the execute(query) command, I am using the executescript(query) command:
+    </p>
+
+    <pre>
+        <code class="language-python">
+    try:
+        r = db.executescript("SELECT * FROM users WHERE name = '" + form.username.data.strip() + "';").fetchone()
+    except Error as e:
+        flash('Error: ' + str(e), 'error')
+        </code>
+    </pre>
+
+    <p>Enter something like this again, replacing test with something you will remember</p>
+
+    <pre>
+        <code class="language-sql">
+    '; INSERT INTO users (name) values ('test');--
+        </code>
+    </pre>
+
+    <p><strong>Make sure to replace test with something of your choosing!</strong></p>
+
+
+    <form method="post">
+        <label for="username">Username</label>
+        {{ form.username }}
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock %}

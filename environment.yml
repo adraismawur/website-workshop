@@ -4,3 +4,4 @@ channels:
 dependencies:
   - python
   - flask
+  - flask-wtf

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>SQL injection part 6</h3>
+
+    <p>We failed to log in, since we did not get any username, but we can check if we added our user:</p>
+
+
+    <table class="table">
+        <thead>
+            <th>Username</th>
+            <th>Time created</th>
+        </thead>
+        {% for user in users %}
+        <tr>
+            <td>{{user[0]}}</td>
+            <td>{{user[1]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>Is your user in here? Then congratulations! You have successfully performed some SQL injection.</p>
+
+    <h3>How do we protect against this attack?</h3>
+
+    <p>
+        In part 1 there was also a login screen. If you were eager and tried to mess around with that one, you might
+        have seen that it does not work. Here is the login form again:
+    </p>
+
+
+    <form method="post">
+        <label for="username">Username</label>
+        {{ form.username }}
+        {{ form.submit }}
+    </form>
+
+    <p>
+        The code that is responsible for the login logic for the above form looks like this:
+    </p>
+
+    <pre>
+        <code class="language-python">
+    try:
+        r = db.execute("SELECT * FROM users WHERE name = ?;", (form.username.data,)).fetchone()
+    except Error as e:
+        flash('Failed to log in: ' + str(e), 'error')
+        </code>
+    </pre>
+
+    <p>
+        The important part here is the presence of placeholders, indicated by the question mark. This indicates that a
+        value needs to be replaced by something and cleaned up properly, in this case the username.
+    </p>
+
+    <p>
+        By using this placeholder and replacement, the value is sanitized and can be safely used. Feel free to try what
+        you have learned in the above username input - None of the below attacks will work:
+    </p>
+
+    <pre>
+        <code class="language-sql">
+    ' test--
+        </code>
+        <code class="language-sql">
+    SELECT * FROM users WHERE name = '' or 1--';
+        </code>
+        <code class="language-sql">
+    '; INSERT INTO users (name) values ('test');--
+        </code>
+    </pre>
+
+
+    <p>For more information, see the following:</p>
+    <ul>
+        <li><a href="https://docs.python.org/3/library/sqlite3.html#sqlite3-placeholders">Python sqlite3 placeholders
+                documentation</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/SQL_injection">Wikipedia - SQL injection</a></li>
+    </ul>
+
+</div>
+
+{% endblock %}

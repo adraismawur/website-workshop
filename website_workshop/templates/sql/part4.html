@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>SQL injection part 4</h3>
+
+    <p>We're logged in as admin! And we didn't even input the username!</p>
+
+    <p>
+        Of course this will often not be this easy. People who (for good or bad reasons) try to access systems this way
+        often take a lot longer and have much more complicated stuff up their sleeve.
+    </p>
+
+    <p>
+        SQL injection has been around for a long time, so systems have added protections to minimize mistakes that
+        developers make to expose their websites to SQL injection vulnerabilities.
+    </p>
+
+    <p>
+        Here is an example: we will add a user instead of trying to log in as an existing one. To do this, we could try
+        adding our own query:
+    </p>
+
+    <p>Enter something like this again, replacing test with something you will remember</p>
+
+    <pre>
+        <code class="language-sql">
+    '; INSERT INTO users (name) values ('test');--
+        </code>
+    </pre>
+
+
+
+
+
+    <form method="post">
+        <label for="username">Username</label>
+        {{ form.username }}
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock %}

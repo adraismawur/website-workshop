@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>SQL injection part 1</h3>
+
+    <p>
+        SQL injection involves the execution of SQL statements on a database that are unexpected by a website or
+        application. This can happen when there are no protections against custom input in forms, or if there are no
+        protections when the SQL is actually executed.
+    </p>
+
+    <p>
+        In this exercise, you are going to execute some queries on this website's database through some insecure
+        code.
+    </p>
+
+    <p>
+        Pay attention to the top of this page. Errors, warnings and information messages may pop up at the top.
+    </p>
+
+    <div class="row flashes">
+        <div class="alert z-depth-3 red lighten-4" role="alert">If a red message shows up, you made a mistake somewhere
+        </div>
+        <div class="alert z-depth-3 orange lighten-4" role="alert">If a yellow message shows up, there was an expected
+            error.</div>
+        <div class="alert z-depth-3 green lighten-3" role="alert">green message shows up, something normal happened.
+        </div>
+    </div>
+
+    <p>
+        Here is a list of mock users in this database:
+    </p>
+
+    <table class="table">
+        <thead>
+            <th>Username</th>
+            <th>Time created</th>
+        </thead>
+        {% for user in users %}
+        <tr>
+            <td>{{user[0]}}</td>
+            <td>{{user[1]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>Below is a form to log in as one of these users. Try logging in as one of these users</p>
+
+    <form method="post">
+        <label for="username">Username</label>
+        {{ form.username }}
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock %}
