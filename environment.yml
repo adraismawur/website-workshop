@@ -1,0 +1,6 @@
+name: website-workshop
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - flask

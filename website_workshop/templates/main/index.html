@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <h3>Welcome to the Secure website workshop... website</h3>
+
+        <p>This website is the hands-on part of the workshop, where you will apply a few hacking techniques that you
+            should try to avoid when creating a website.</p>
+
+        <p>Click on any of the chapters below to play around with exploiting this website.</p>
+
+        <hr>
+
+        <table class="table">
+            <tr>
+                <td><a href="{{url_for('sql.part1')}}"><button class="btn">SQL injection</button></a></td>
+                <td>Learn to inject SQL queries in an unguarded database</td>
+            </tr>
+            <tr>
+                <td><a href="{{url_for('shell.part1')}}"><button class="btn">Shell injection</button></a></td>
+                <td>Learn to replace unguarded shell commands</td>
+            </tr>
+            <tr>
+                <td><a href="{{url_for('files.part1')}}"><button class="btn">Unguarded file uploads</button></a></td>
+                <td>Learn to upload any file you want to an insecure file upload</td>
+            </tr>
+            <tr>
+                <td><a href="{{url_for('xss.part1')}}"><button class="btn">XSS</button></a></td>
+                <td>Learn to replace webpages with something else</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
