@@ -32,14 +32,14 @@
         </pre>
 
         <p>
-            This runs just fine, but is only a little bit safe. But there are some easy ways around this.
+            This runs just fine, but is only a little bit safe. There are some easy ways around this.
         </p>
 
         <p>
-            One way you can edit what gets sent through from this form is by simply sending your own 
-            request by not using this form at all. To do so, we will use a program called
-            <a href="https://curl.se/">curl</a>. This program should be installed by default on most
-            operating systems, but if it is not, you can download it from this link: <a href="https://curl.se/download.html">https://curl.se/download.html</a>.
+            One way you can edit what gets sent through from this form is by not using this form at all. 
+            To do so, we will use a program called <a href="https://curl.se/">curl</a>. 
+            This program should be installed by default on most operating systems,
+            but if it is not, you can download it from this link: <a href="https://curl.se/download.html">https://curl.se/download.html</a>.
         </p>
 
         <p>
@@ -77,13 +77,22 @@
 
         <ul>
             <li>neofetch</li>
-            <li>echo</li>
             <li>whoami</li>
         </ul>
 
         <p>
             Consider what these commands tell you about the system and who operates it.
         </p>
+
+        <p>
+            Finally, also try our good friend <code>echo</code>
+        </p>
+
+        <pre class="language-python">
+            <code>
+    curl {{ request.url }} -F program="echo hello, world!"
+            </code>
+        </pre>
     {% endif %}
 
     
