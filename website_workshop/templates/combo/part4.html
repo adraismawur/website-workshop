@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>combo part 4</h3>
+
+    <p>
+        Good, our script is uploaded! You can run the allowed commands here to see that your file (example.fasta) is
+        being used.
+    </p>
+
+    <form method="POST">
+        <label for="program">Program to run</label>
+        <select class="browser-default" name="program" id="program">
+            {% for choice in form.program.choices %}
+            <option value="{{ choice }}">{{ choice }}</option>
+            {% endfor %}
+        </select>
+        {{ form.submit }}
+    </form>
+
+    {% if program_result %}
+    <pre>
+        <code>
+{{ program_result }}
+        </code>
+    </pre>
+
+    <p>
+        Now we just need to apply what we learned in the Shell injection exercise. We can use <code>curl</code> to run
+        <code>bash</code> instead of the above programs.
+    </p>
+
+    <pre>
+        <code class="language-bash">
+curl {{ request.url | replace('http', 'https') }} -F program=bash
+        </code>
+    </pre>
+
+    <p>
+        If all goes well, you should see something like this:
+    </p>
+
+    <pre>
+        <code>
+hello! If you are seeing this, you have successfully run a bash script by using an unguarded file upload and shell injection. Hooray!
+This concludes the exercises.
+All the code used in this workshop is available at https://github.com/adraismawur/website-workshop
+I have tried to include relevant code snippets, but I have cheated here and there to include some protections
+maybe you can use the source code to learn how you can avoid people exploiting vulnerabilities in your websites
+Good luck!
+        </code>
+    </pre>
+
+    <p>
+        The above is relatively innocent, as it is just a script that prints a few lines. But malicious actors can gain
+        access over entire systems if they find a vulnerability like this, which can lead to loss of data, data
+        ransoming, and bad actors making use of your server to execute attacks on other servers.
+    </p>
+
+    <p>
+        That concludes the exercises. In this series of exercises, you have performed genuine attacks using
+        vulnerabilities
+        that do exist in the real world. Of course, this website was made specifically to be vulnerable in these ways,
+        but it is easy to make these sorts of mistakes. Always validate your user input, always make sure to read the
+        documentation, to see if it mentions vulnerabilities. And if possible, consult other programmers so that you can
+        have a second pair of eyes on your work.
+    </p>
+
+    {% endif %}
+</div>
+
+{% endblock %}

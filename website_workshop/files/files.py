@@ -74,7 +74,7 @@ def part2():
 
             file.save(input_file_path)
 
-            out = run(["wc", "-l", input_file_path], capture_output=True)
+            out = run(["wc", "-l", input_file_path.relative_to(Path.cwd())], capture_output=True)
 
             with open(job_folder / "results.txt", "w") as f:
                 f.write(out.stdout.decode("utf-8"))

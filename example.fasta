@@ -1,0 +1,7 @@
+#!/bin/bash
+echo hello! If you are seeing this, you have successfully run a bash script by using an unguarded file upload and shell injection. Hooray!
+echo This concludes the exercises.
+echo All the code used in this workshop is available at https://github.com/adraismawur/website-workshop
+echo I have tried to include relevant code snippets, but I have cheated here and there to include some protections
+echo maybe you can use the source code to learn how you can avoid people exploiting vulnerabilities in your websites
+echo Good luck!

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>combo part 3</h3>
+
+    <p>
+        This time, I have a fasta file for you.
+    </p>
+
+    <a href="{{ url_for('combo.download_script') }}" target="_blank"><button class="btn">Download "malicious" FASTA
+            file</button></a>
+
+    <p>
+        Don't worry, it does not actually do much. You can open this script in a text editor, and it should contain the
+        following text:
+    </p>
+
+    <pre>
+        <code class="language-bash">
+#!/bin/bash
+echo hello! If you are seeing this, you have successfully run a bash script by using an unguarded file upload and shell injection. Hooray!
+echo This concludes the exercises.
+echo All the code used in this workshop is available at https://github.com/adraismawur/website-workshop
+echo I have tried to include relevant code snippets, but I have cheated here and there to include some protections
+echo maybe you can use the source code to learn how you can avoid people exploiting vulnerabilities in your websites
+echo Good luck!
+        </code>
+    </pre>
+
+    <p>
+        It does need to be this script exactly. I will be checking to see if this exact script was uploaded when you
+        upload the file. Try doing so now:
+    </p>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Click to select FASTA file</span>
+                {{ form.file }}
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock %}

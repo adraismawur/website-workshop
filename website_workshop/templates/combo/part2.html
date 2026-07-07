@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>combo part 2</h3>
+
+    <p>
+        Great! We once again have a file uploaded to the website. This time, this website allows you to run a choice
+        of applications:
+    </p>
+
+    <form method="POST">
+        <label for="program">Program to run</label>
+        <select class="browser-default" name="program" id="program">
+            {% for choice in form.program.choices %}
+            <option value="{{ choice }}">{{ choice }}</option>
+            {% endfor %}
+        </select>
+        {{ form.submit }}
+    </form>
+
+    <p>
+        Try it out and see what the results are.
+    </p>
+
+    {% if program_result %}
+    <pre>
+            <code>
+    {{ program_result }}
+            </code>
+        </pre>
+
+    <p>
+        Once again we see results based on what we uploaded. We see familiar elements: a dropdown allowing us to choose
+        a program to run, and we see our fasta file mentioned in the output.
+    </p>
+
+    <p>
+        In this case, I am even using a relatively safe method to call the programs <code>wc</code> and
+        <code>stat</code>:
+    </p>
+
+    <pre>
+        <code class="language-python">
+    def call_program_safe(args):
+        out = run(args, capture_output=True)
+
+        if out.returncode != 0:
+            output = out.stderr.decode("utf-8")
+            raise RuntimeError(
+                f"Failed to run {args} command: {output}"
+            )
+
+        return out.stdout.decode("utf-8")
+        </code>
+    </pre>
+
+    <p>
+        I am not allowing users to input arguments. I am even transforming the input_file_path to a relative path, so
+        that people do not see my username (this would otherwise print
+        <code>/home/secure-website/src/website-workshop/...</code>)
+    </p>
+
+    <pre>
+        <code class="language-python">
+    program_result = call_program_safe([form.program.data, input_file_path.relative_to(Path.cwd())])
+        </code>
+    </pre>
+
+    <p>
+        So what is the problem? The problem is that we can upload anything, which means we can upload something like a
+        bash script and just replace the program we are using with <code>bash</code>.
+    </p>
+
+    <a href="{{url_for('combo.part3')}}"><button class="btn">Continue to part 3</button></a>
+
+    {% endif %}
+</div>
+
+{% endblock %}

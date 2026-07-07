@@ -2,10 +2,38 @@
 
 {% block body %}
 
-<div class="container">
-    <div class="row">
-        <h3>combo part 1</h3>
-    </div>
+<div class="row">
+    <h3>combo part 1</h3>
+
+    <blockquote>
+        <h5>
+            This guide assumes you have followed the <code>Shell injection</code> and <code>File uploads</code>
+            parts
+        </h5>
+    </blockquote>
+
+    <p>
+        We will now use a combination of unguarded file uploads and shell execution to run a shell script on website
+        server.
+    </p>
+
+    <p>
+        Let's start by once again uploading some data. The following form has the same guards as the one in the
+        File uploads guide:
+    </p>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Click to select FASTA file</span>
+                {{ form.file }}
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        {{ form.submit }}
+    </form>
 </div>
 
 {% endblock %}

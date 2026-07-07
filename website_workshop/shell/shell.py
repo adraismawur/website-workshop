@@ -26,8 +26,9 @@ def call_program_safe(program: str):
     out = run(program, capture_output=True)
 
     if out.returncode != 0:
+        output = out.stderr.decode("utf-8")
         raise RuntimeError(
-            f"Failed to run {program} command: {out.stderr.decode("utf-8")}"
+            f"Failed to run {program} command: {output}"
         )
 
     return out.stdout.decode("utf-8")

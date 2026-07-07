@@ -47,7 +47,6 @@ def populate_db():
     mock_users = [
         ("admin", datetime.now().isoformat()),
         ("guest", datetime.now().isoformat()),
-        ("Arjan Draisma", datetime.now().isoformat()),
         ("Santa Clause", datetime.now().isoformat()),
     ]
 

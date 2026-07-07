@@ -5,7 +5,36 @@
 <div class="row">
     <h3>SQL injection part 4</h3>
 
-    <p>We're logged in as admin! And we didn't even input the username!</p>
+    <p>We're logged in as admin! And we didn't even input the username! But how? Here is what you entered:</p>
+
+    <pre>
+        <code class="language-sql">
+    ' or 1--
+        </code>
+    </pre>
+
+
+    <p>The single quote again closes the previous string</p>
+    <p>'or 1' is our own condition. It basically means "or true", which is always true.</p>
+    <p>-- again makes SQLite ignore the rest of the statement</p>
+
+
+    <p>As a result your query will look like this:</p>
+
+
+    <pre>
+        <code class="language-sql">
+    SELECT * FROM users WHERE name = '' or 1--';
+        </code>
+    </pre>
+
+    <p>Which means we are selecting all users where one of the following is true:</p>
+    <ul>
+        <li>The name is equal to ''</li>
+        <li>True</li>
+    </ul>
+
+    <p>Since True is always True, we get every row.</p>
 
     <p>
         Of course this will often not be this easy. People who (for good or bad reasons) try to access systems this way
