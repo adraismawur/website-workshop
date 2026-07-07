@@ -1,0 +1,11 @@
+prefix=/home/drais008/src/website-workshop/website-workshop
+exec_prefix=/home/drais008/src/website-workshop/website-workshop
+libdir=/home/drais008/src/website-workshop/website-workshop/lib
+includedir=/home/drais008/src/website-workshop/website-workshop/include
+
+Name: uuid
+Description: Universally unique id library
+Version: 2.42.2
+Cflags: -I${includedir}/uuid
+Libs.private:  -lpthread
+Libs: -L${libdir} -luuid

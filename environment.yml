@@ -1,3 +1,4 @@
+# environment.yml
 name: website-workshop
 channels:
   - conda-forge

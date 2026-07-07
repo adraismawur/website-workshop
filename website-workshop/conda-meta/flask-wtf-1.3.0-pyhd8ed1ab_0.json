@@ -1,0 +1,224 @@
+{
+  "build": "pyhd8ed1ab_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/noarch",
+  "constrains": [],
+  "depends": [
+    "flask",
+    "itsdangerous",
+    "wtforms",
+    "python >=3.10"
+  ],
+  "extracted_package_dir": "/home/drais008/miniforge3/pkgs/flask-wtf-1.3.0-pyhd8ed1ab_0",
+  "files": [
+    "lib/python3.14/site-packages/flask_wtf-1.3.0.dist-info/INSTALLER",
+    "lib/python3.14/site-packages/flask_wtf-1.3.0.dist-info/METADATA",
+    "lib/python3.14/site-packages/flask_wtf-1.3.0.dist-info/RECORD",
+    "lib/python3.14/site-packages/flask_wtf-1.3.0.dist-info/REQUESTED",
+    "lib/python3.14/site-packages/flask_wtf-1.3.0.dist-info/WHEEL",
+    "lib/python3.14/site-packages/flask_wtf-1.3.0.dist-info/direct_url.json",
+    "lib/python3.14/site-packages/flask_wtf-1.3.0.dist-info/licenses/LICENSE.rst",
+    "lib/python3.14/site-packages/flask_wtf/__init__.py",
+    "lib/python3.14/site-packages/flask_wtf/_compat.py",
+    "lib/python3.14/site-packages/flask_wtf/csrf.py",
+    "lib/python3.14/site-packages/flask_wtf/file.py",
+    "lib/python3.14/site-packages/flask_wtf/form.py",
+    "lib/python3.14/site-packages/flask_wtf/i18n.py",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/__init__.py",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/fields.py",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/validators.py",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/widgets.py",
+    "lib/python3.14/site-packages/flask_wtf/__pycache__/__init__.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/__pycache__/_compat.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/__pycache__/csrf.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/__pycache__/file.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/__pycache__/form.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/__pycache__/i18n.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/__init__.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/fields.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/validators.cpython-314.pyc",
+    "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/widgets.cpython-314.pyc"
+  ],
+  "fn": "flask-wtf-1.3.0-pyhd8ed1ab_0.conda",
+  "license": "BSD-3-Clause",
+  "link": {
+    "source": "/home/drais008/miniforge3/pkgs/flask-wtf-1.3.0-pyhd8ed1ab_0",
+    "type": 1
+  },
+  "md5": "9513f9f50bd7ab25cf42fe8a9c7b18fd",
+  "name": "flask-wtf",
+  "noarch": "python",
+  "package_tarball_full_path": "/home/drais008/miniforge3/pkgs/flask-wtf-1.3.0-pyhd8ed1ab_0.conda",
+  "package_type": "noarch_python",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "site-packages/flask_wtf-1.3.0.dist-info/INSTALLER",
+        "path_type": "hardlink",
+        "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "sha256_in_prefix": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "size_in_bytes": 5
+      },
+      {
+        "_path": "site-packages/flask_wtf-1.3.0.dist-info/METADATA",
+        "path_type": "hardlink",
+        "sha256": "3f721b389963990a4822fe77921d421b54688116afa9ceecf07ed47a0a230431",
+        "sha256_in_prefix": "3f721b389963990a4822fe77921d421b54688116afa9ceecf07ed47a0a230431",
+        "size_in_bytes": 3390
+      },
+      {
+        "_path": "site-packages/flask_wtf-1.3.0.dist-info/RECORD",
+        "path_type": "hardlink",
+        "sha256": "9398fd988fd2e37b7b08710c2080cc494e752b5f81cdc7a75212fe3a7b89dd2c",
+        "sha256_in_prefix": "9398fd988fd2e37b7b08710c2080cc494e752b5f81cdc7a75212fe3a7b89dd2c",
+        "size_in_bytes": 1928
+      },
+      {
+        "_path": "site-packages/flask_wtf-1.3.0.dist-info/REQUESTED",
+        "path_type": "hardlink",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256_in_prefix": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_in_bytes": 0
+      },
+      {
+        "_path": "site-packages/flask_wtf-1.3.0.dist-info/WHEEL",
+        "path_type": "hardlink",
+        "sha256": "41c708c5adba6e097513ab8ccb9f1d7865a2fb469e22491a9e01dcc64da459fc",
+        "sha256_in_prefix": "41c708c5adba6e097513ab8ccb9f1d7865a2fb469e22491a9e01dcc64da459fc",
+        "size_in_bytes": 87
+      },
+      {
+        "_path": "site-packages/flask_wtf-1.3.0.dist-info/direct_url.json",
+        "path_type": "hardlink",
+        "sha256": "cc129dc335f53010a8b89aac29047cc2c14335c4d9487270b78ef03c38596fab",
+        "sha256_in_prefix": "cc129dc335f53010a8b89aac29047cc2c14335c4d9487270b78ef03c38596fab",
+        "size_in_bytes": 105
+      },
+      {
+        "_path": "site-packages/flask_wtf-1.3.0.dist-info/licenses/LICENSE.rst",
+        "path_type": "hardlink",
+        "sha256": "d5f19036451578cb36eeef04c99ebf7d7ca2e70dcf043636519bc420e15a7c62",
+        "sha256_in_prefix": "d5f19036451578cb36eeef04c99ebf7d7ca2e70dcf043636519bc420e15a7c62",
+        "size_in_bytes": 1475
+      },
+      {
+        "_path": "site-packages/flask_wtf/__init__.py",
+        "path_type": "hardlink",
+        "sha256": "25fd637c02036276d2982ca2bb22a68ab2a81ff257ee0c00aede3c5355cdbf32",
+        "sha256_in_prefix": "25fd637c02036276d2982ca2bb22a68ab2a81ff257ee0c00aede3c5355cdbf32",
+        "size_in_bytes": 338
+      },
+      {
+        "_path": "site-packages/flask_wtf/_compat.py",
+        "path_type": "hardlink",
+        "sha256": "377b2a0bdcb315663edcc67b41acd7d6c89dbe43b7779cb2e0d47a964a74b3de",
+        "sha256_in_prefix": "377b2a0bdcb315663edcc67b41acd7d6c89dbe43b7779cb2e0d47a964a74b3de",
+        "size_in_bytes": 248
+      },
+      {
+        "_path": "site-packages/flask_wtf/csrf.py",
+        "path_type": "hardlink",
+        "sha256": "58129c9668c8ad8d3cedbb8dbcb8346e3b094df47109a3830508fc68831ed220",
+        "sha256_in_prefix": "58129c9668c8ad8d3cedbb8dbcb8346e3b094df47109a3830508fc68831ed220",
+        "size_in_bytes": 11711
+      },
+      {
+        "_path": "site-packages/flask_wtf/file.py",
+        "path_type": "hardlink",
+        "sha256": "3640b5d8a25fae30c6464f29defdc30dd16cc25d8c06b57fc238f993fe397d61",
+        "sha256_in_prefix": "3640b5d8a25fae30c6464f29defdc30dd16cc25d8c06b57fc238f993fe397d61",
+        "size_in_bytes": 4993
+      },
+      {
+        "_path": "site-packages/flask_wtf/form.py",
+        "path_type": "hardlink",
+        "sha256": "4e647bc42af18a7d8b1e9ead867edfab539e53c68b07bc6c673befe769c7ed2b",
+        "sha256_in_prefix": "4e647bc42af18a7d8b1e9ead867edfab539e53c68b07bc6c673befe769c7ed2b",
+        "size_in_bytes": 4049
+      },
+      {
+        "_path": "site-packages/flask_wtf/i18n.py",
+        "path_type": "hardlink",
+        "sha256": "4f23bc82ab7d0e870731268d863d0a2a0c6852b3d8b3e1b59d55be8e7b3448ec",
+        "sha256_in_prefix": "4f23bc82ab7d0e870731268d863d0a2a0c6852b3d8b3e1b59d55be8e7b3448ec",
+        "size_in_bytes": 1166
+      },
+      {
+        "_path": "site-packages/flask_wtf/recaptcha/__init__.py",
+        "path_type": "hardlink",
+        "sha256": "a1d682464be81bdf7d3271a26927c0d6c12de8e9c03aaba683bf233b9dc62fee",
+        "sha256_in_prefix": "a1d682464be81bdf7d3271a26927c0d6c12de8e9c03aaba683bf233b9dc62fee",
+        "size_in_bytes": 168
+      },
+      {
+        "_path": "site-packages/flask_wtf/recaptcha/fields.py",
+        "path_type": "hardlink",
+        "sha256": "408ed85cf874a7f2b5ca67c72950ea5f383d71ba2b93c58337c7f2c87891a92c",
+        "sha256_in_prefix": "408ed85cf874a7f2b5ca67c72950ea5f383d71ba2b93c58337c7f2c87891a92c",
+        "size_in_bytes": 963
+      },
+      {
+        "_path": "site-packages/flask_wtf/recaptcha/validators.py",
+        "path_type": "hardlink",
+        "sha256": "b91730e825035197411ad937d507519a5610aea781e716865574fcfe39255b79",
+        "sha256_in_prefix": "b91730e825035197411ad937d507519a5610aea781e716865574fcfe39255b79",
+        "size_in_bytes": 2840
+      },
+      {
+        "_path": "site-packages/flask_wtf/recaptcha/widgets.py",
+        "path_type": "hardlink",
+        "sha256": "7250ba92f3d0c3c6a15f20ccf2c7cd03d9f31d208d654dd27b3cb99a25608970",
+        "sha256_in_prefix": "7250ba92f3d0c3c6a15f20ccf2c7cd03d9f31d208d654dd27b3cb99a25608970",
+        "size_in_bytes": 1981
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/__pycache__/__init__.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/__pycache__/_compat.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/__pycache__/csrf.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/__pycache__/file.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/__pycache__/form.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/__pycache__/i18n.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/__init__.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/fields.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/validators.cpython-314.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "lib/python3.14/site-packages/flask_wtf/recaptcha/__pycache__/widgets.cpython-314.pyc",
+        "path_type": "pyc_file"
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "flask-wtf",
+  "sha256": "dfe3fe7b02c28f3a3ae7ca911fa4f4be28f4acfaa6067e633e992590e46940dc",
+  "size": 18496,
+  "subdir": "noarch",
+  "timestamp": 1776950322000,
+  "url": "https://conda.anaconda.org/conda-forge/noarch/flask-wtf-1.3.0-pyhd8ed1ab_0.conda",
+  "version": "1.3.0"
+}
