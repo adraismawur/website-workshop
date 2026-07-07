@@ -4,7 +4,7 @@
 
 <div class="row">
     <h3>Shell injection part 3</h3>
-    
+
     <p>
         In the previous pages, a form exposed an input field where you could enter your commands. Things are
         not always this simple however. In the form below, the options you can choose from are limited.
@@ -13,51 +13,52 @@
     <p>
         Try selecting one of these options and running the command:
     </p>
-    
+
     <form method="POST">
         <label for="program">Program to run</label>
         <select class="browser-default" name="program" id="program">
-        {% for choice in form.program.choices %}
+            {% for choice in form.program.choices %}
             <option value="{{ choice }}">{{ choice }}</option>
-        {% endfor %}
+            {% endfor %}
         </select>
         {{ form.submit }}
     </form>
 
     {% if program_result %}
-        <pre>
+    <pre>
             <code>
 {{ program_result }}
             </code>
         </pre>
 
-        <p>
-            This runs just fine, but is only a little bit safe. There are some easy ways around this.
-        </p>
+    <p>
+        This runs just fine, but is only a little bit safe. There are some easy ways around this.
+    </p>
 
-        <p>
-            One way you can edit what gets sent through from this form is by not using this form at all. 
-            To do so, we will use a program called <a href="https://curl.se/">curl</a>. 
-            This program should be installed by default on most operating systems,
-            but if it is not, you can download it from this link: <a href="https://curl.se/download.html">https://curl.se/download.html</a>.
-        </p>
+    <p>
+        One way you can edit what gets sent through from this form is by not using this form at all.
+        To do so, we will use a program called <a href="https://curl.se/">curl</a>.
+        This program should be installed by default on most operating systems,
+        but if it is not, you can download it from this link: <a
+            href="https://curl.se/download.html">https://curl.se/download.html</a>.
+    </p>
 
-        <p>
-            Open a terminal or a command prompt, and type in the following: 
-        </p>
+    <p>
+        Open a terminal or a command prompt, and type in the following:
+    </p>
 
-        <pre class="language-bash">
+    <pre class="language-bash">
             <code>
-    curl {{ request.url }} -F program=ls
+    curl {{ request.url | replace('http', 'https') }} -F program=ls
             </code>
         </pre>
 
-        <p>
-            Curl itself should give you a response telling you if it worked. The above should return
-            something like this:
-        </p>
-        
-        <pre>
+    <p>
+        Curl itself should give you a response telling you if it worked. The above should return
+        something like this:
+    </p>
+
+    <pre>
             <code>
     Hi! Here is the result of your CURL request:
 
@@ -71,34 +72,34 @@
             </code>
         </pre>
 
-        <p>
-            There are a few more commands that I can allow you to play with. Try the following commands:
-        </p>
+    <p>
+        There are a few more commands that I can allow you to play with. Try the following commands:
+    </p>
 
-        <ul>
-            <li>neofetch</li>
-            <li>whoami</li>
-        </ul>
+    <ul>
+        <li>neofetch</li>
+        <li>whoami</li>
+    </ul>
 
-        <p>
-            Consider what these commands tell you about the system and who operates it.
-        </p>
+    <p>
+        Consider what these commands tell you about the system and who operates it.
+    </p>
 
-        <p>
-            Finally, also try our good friend <code>echo</code>
-        </p>
+    <p>
+        Finally, also try our good friend <code>echo</code>
+    </p>
 
-        <pre class="language-python">
+    <pre class="language-python">
             <code>
-    curl {{ request.url }} -F program="echo hello, world!"
+    curl {{ request.url | replace('http', 'https') }} -F program="echo hello, world!"
             </code>
         </pre>
     {% endif %}
 
-    
+
     <script>
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems, options);
         });
@@ -109,7 +110,7 @@
         If you have already done the "Files" exercise, continue to File+Shell. If you have not, please
         do the Files exercise first before moving on to File+Shell
     </p>
-    
+
 </div>
 
 {% endblock %}
