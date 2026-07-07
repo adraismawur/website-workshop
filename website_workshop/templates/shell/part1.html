@@ -3,12 +3,154 @@
 {% block body %}
 
 <div class="row">
-    <h3>Shell part 1</h3>
+    <h3>Shell injection  part 1</h3>
 
     <p>
-        Shell or code injection is a vulnerability where user-input is allowed to call arbitrary 
-        code or applications on an application or website.
+        Shell or code injection is a vulnerability where user input is allowed to call arbitrary 
+        code or applications. This can be especially relevant for Bioinformaticians,
+        as websites that are used in bioinformatics often call other applications that do some form of analysis
+        or data processing.
     </p>
+
+    <p>
+        In this chapter, you will be running some unintended applications. We will also be using a 
+        more advanced technique than just manipulating a form.
+    </p>
+
+    <p>
+        Let's start with an example. This will be a basic website that displays the date and time, 
+        with optional formatting. It does this by calling the `date` command on ubuntu:
+    </p>
+
+    <pre>
+        <code>
+    $ date --help
+    Usage: date [OPTION]... [+FORMAT]
+    or:  date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]
+    Display the current time in the given FORMAT, or set the system date.
+        </code>
+    </pre>
+
+    <p>When we run this command right now, we see the following:</p>
+
+    <pre>
+        <code>
+    {{ plain_date_output }}
+        </code>
+    </pre>
+
+    Makes sense. We can format this how we want using the following format:
+
+    <pre>
+        <code>
+    FORMAT controls the output.  Interpreted sequences are:
+
+    %%   a literal %
+    %a   locale's abbreviated weekday name (e.g., Sun)
+    %A   locale's full weekday name (e.g., Sunday)
+    %b   locale's abbreviated month name (e.g., Jan)
+    %B   locale's full month name (e.g., January)
+    %c   locale's date and time (e.g., Thu Mar  3 23:05:25 2005)
+    %C   century; like %Y, except omit last two digits (e.g., 20)
+    %d   day of month (e.g., 01)
+    %D   date; same as %m/%d/%y
+    %e   day of month, space padded; same as %_d
+    %F   full date; like %+4Y-%m-%d
+    %g   last two digits of year of ISO week number (see %G)
+    %G   year of ISO week number (see %V); normally useful only with %V
+    %h   same as %b
+    %H   hour (00..23)
+    %I   hour (01..12)
+    %j   day of year (001..366)
+    %k   hour, space padded ( 0..23); same as %_H
+    %l   hour, space padded ( 1..12); same as %_I
+    %m   month (01..12)
+    %M   minute (00..59)
+    %n   a newline
+    %N   nanoseconds (000000000..999999999)
+    %p   locale's equivalent of either AM or PM; blank if not known
+    %P   like %p, but lower case
+    %q   quarter of year (1..4)
+    %r   locale's 12-hour clock time (e.g., 11:11:04 PM)
+    %R   24-hour hour and minute; same as %H:%M
+    %s   seconds since 1970-01-01 00:00:00 UTC
+    %S   second (00..60)
+    %t   a tab
+    %T   time; same as %H:%M:%S
+    %u   day of week (1..7); 1 is Monday
+    %U   week number of year, with Sunday as first day of week (00..53)
+    %V   ISO week number, with Monday as first day of week (01..53)
+    %w   day of week (0..6); 0 is Sunday
+    %W   week number of year, with Monday as first day of week (00..53)
+    %x   locale's date representation (e.g., 12/31/99)
+    %X   locale's time representation (e.g., 23:13:48)
+    %y   last two digits of year (00..99)
+    %Y   year
+    %z   +hhmm numeric time zone (e.g., -0400)
+    %:z  +hh:mm numeric time zone (e.g., -04:00)
+    %::z  +hh:mm:ss numeric time zone (e.g., -04:00:00)
+    %:::z  numeric time zone with : to necessary precision (e.g., -04, +05:30)
+    %Z   alphabetic time zone abbreviation (e.g., EDT)
+        </code>
+    </pre>
+
+    <p>
+        Here is a safe input to apply your own formatting. Try it out and continue to the
+        next part once you are ready:
+    </p>
+
+    <form method="POST">
+        <label for="formatting">Formatting</label>
+        {{ form.formatting }}
+        <!-- <input type="submit" value="Show date" class="btn"> -->
+         {{ form.submit }}
+    </form>
+
+    {% if formatted_date_output %}
+
+    <p>Date format result:</p>
+
+    <pre>
+        <code>
+    {{ formatted_date_output }}
+        </code>
+    </pre>
+
+    <p>Looks like it worked. Here is the command you ended up executing:</p>
+
+    <pre>
+        <code class="language-bash">
+    $ date {{formatting}}
+        </code>
+    </pre>
+
+    <p>
+        If you did not include a + symbol in front of the actual format, I added it for you.
+        Play around with entering different things, and see how the command you are executing changes.
+    </p>
+
+    {% endif %}
+
+    {% if formatted_date_error %}
+
+    <p>There was an error in the execution of the date command, check the output below and try again:</p>
+
+    <pre>
+        <code>
+    {{ formatted_date_error }}
+        </code>
+    </pre>
+
+    <p>
+        If you are struggling to get this to work right, try entering only "%Y" (without quotes). 
+    </p>
+
+    {% endif %}
+
+    <br><br>
+
+    <a href="{{url_for('shell.part2')}}"><button class="btn">Continue to part 2</button></a>
+
 </div>
 
 {% endblock %}

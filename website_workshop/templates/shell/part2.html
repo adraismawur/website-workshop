@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>Shell injection  part 2</h3>
+
+   <p>Now that we know how our input changes the command that is executed, we can do more fun stuff.</p>
+
+   <p>
+        On the previous page, I added some protections to make it so that you cannot do any kind of shell 
+        or code injection. Here is what that code looked like:
+   </p>
+
+   <pre>
+    <code class="language-python">
+    from subprocess import run
+    from shlex import quote
+
+    def call_date_safe(formatting: str = None):
+        args = ["date"]
+
+        if formatting:
+            if not formatting.startswith("+"):
+                formatting = "+" + formatting
+            args.append(quote(formatting))
+
+        out = run(args, capture_output=True)
+    </code>
+   </pre>
+
+   <p>
+        Here I am calling the <code>date</code> command by passing in an array of arguments.
+        The first argument is the program, the rest are interpreted as parameters to that program.
+        By doing this, <code>subprocess.run</code> will try to format the arguments such that they
+        cannot be used to do shell/code injection.
+   </p>
+
+   <p>
+        I also added a <code>shlex.quote</code> call around the formatting you passed in. This is
+        a function that explicitly makes sure that no strange quotes or characters make it into the
+        formatting you put in.
+   </p>
+
+    <p>
+        I am going to remove all of this now and change the code to be the following:
+    </p>
+
+    <pre>
+        <code class="language-python">
+    from subprocess import run
+
+    def call_date_unsafe(formatting: str = None):
+        command = "date"
+
+        if formatting:
+            if not formatting.startswith("+"):
+                formatting = "+" + formatting
+            command = command + " " + formatting
+
+        out = run(command, capture_output=True, shell=True)
+        </code>
+    </pre>
+
+    <p>
+        This is incredibly unsafe. <code>subprocess.run</code> is not inherently unsafe, but used this way
+        where a raw string is passed as a command makes it more difficult for it to sanitize your input.
+    </p>
+
+    <p>
+        I also set <code>subprocess.run</code> to use <i>shell mode</i>. This makes it treat the command
+        you pass in as a full shell script. This in turn means that you can run multiple commands in sequence.
+    </p>
+
+    <p>
+        Instead of a normal format, try putting in the following:
+    </p>
+
+    <pre>
+        <code>
+    >> /dev/null; echo hello!
+        </code>
+    </pre>
+
+    <form method="POST" action="#response">
+        <label for="formatting">Formatting</label>
+        {{ form.formatting }}
+         {{ form.submit }}
+    </form>
+
+    {% if formatted_date_output %}
+
+    <p>Result:</p>
+
+    <pre>
+        <code>
+    {{ formatted_date_output }}
+        </code>
+    </pre>
+
+    <p id="response">Interesting! It ran your <code>echo hello!</code> command! So what is going on?</p>
+
+    <p>Doing this, instead of having a sensible date command, you executed the following:</p>
+
+    <pre>
+        <code class="language-bash">
+    $ date {{formatting}}
+        </code>
+    </pre>
+
+    <p>
+        Here we are throwing away the output of the <code>date</code> command into /dev/null, which is a sort of
+        black hole where anything you write will disappear. This makes it so that something else can be written 
+        to the output, in this case the output of the <code>echo</code> command, which is <code>hello!</code>
+    </p>
+    
+    <p>
+        Hopefully you sense the consequences of this. Doing this, you can run anything you want on the system the
+        application/website is running on. Including some really dirty stuff.
+    </p>
+
+    <br><br>
+
+    <a href="{{url_for('shell.part3')}}"><button class="btn">Continue to part 3</button></a>
+
+    {% endif %}
+
+    {% if formatted_date_error %}
+
+    <p>There was an error in the execution of the date command, check the output below and try again:</p>
+
+    <pre>
+        <code>
+    {{ formatted_date_error }}
+        </code>
+    </pre>
+
+    <p>
+        If you are struggling to get this to work right, try entering only "%Y" (without quotes). 
+    </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
