@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>Files part 3</h3>
+    
+    <p>
+       Welcome to the mock results page of your analysis! Here are the results:
+    </p>
+
+    <br>
+
+    <a href="{{url_for('files.part3_view', guid=guid, filename='results.txt')}}" target="_blank"><button class="btn">Click here to view your analysis results in a new tab</button></a>
+    
+    <br><br>
+
+    <p>
+        The above link shows a text file containing your "analysis" results. This is really only an output
+        of <code>wc -l your_file.fa</code>, so it only shows the number of lines in the file you submitted.
+    </p>
+    
+    <p>
+        Notice how the above url ends with "results.txt". What happens if you replace that with the name of your file?
+    </p>
+    
+    <p>
+        Hint: Your filename was {{filename}}
+    </p>
+
+
+    <p>
+        If you managed to find it, notice how this just shows you the contents of your file. This means that the file is
+        accessible. This alone may not be desirable, as input data may be confidential, but we will also explore how this
+        can be used for worse purposes.
+    </p>
+
+
+    <p>
+        If you have done the shell exercises, continue to File+Shell. Otherwise make sure to do the shell exercises first.
+    </p>
+
+    
+    
+</div>
+
+{% endblock %}

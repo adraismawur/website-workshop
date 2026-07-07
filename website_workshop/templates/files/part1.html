@@ -4,7 +4,91 @@
 
 <div class="row">
     <h3>Files part 1</h3>
+    
+    <p>
+        You may have encountered a website (or have designed one) where users can upload their own data.
+        For example, it is very common for a bioinformatician to supply a FASTA file or a genbank file for analysis.
+        In these cases, it is very easy to allow users to upload data that you do not intend for them to upload,
+        by not checking the input. This can lead to some dangerous situations.
+    </p>
+    
+    <p>
+        Here's a form where a user is expected to input a FASTA file. It has a minor protection in that it will
+        ask the browser to present a file selection dialogue showing only FASTA files:
+    </p>
+    
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Click to select FASTA file</span>
+            {{ form.file }}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    
+    <p>
+        But this does not prevent anyone from selecting files with a different extension; 
+        On most operating systems, this still allows you to select any file.
+    </p>
+    
+    <p>
+        We can increase the protection by at least forcing the filename to end in .fa or .fasta:
+    </p>
+    
+    <pre>
+        <code class="language-python">
+    def upload_file(form):
+        filename = form.file.data
+        is_fasta = filename.endswith(".fa") or filename.endswith(".fasta")
+        if not is_fasta:
+            flash("File is not a fasta file", "warning")
+        </code>
+    </pre>
+    
+    <p>
+        Try selecting a non-fasta file and pressing upload:
+    </p>
+    
+    
+    <form method="POST">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Click to select FASTA file</span>
+                {{ form.file }}
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        {{ form.submit }}
+    </form>
+    
 
+    <p>
+        According to the above code, as long as a file has an extension ending in .fa or .fasta, it is a fasta file.
+        But that is not actually correct. Fasta files are text files with a specific format, which the code
+        is not checking for.
+    </p>
+
+    <p>
+        In actual applications, you will want to make sure that the content actually contains the format
+        you expect. For fasta files, this is easy: they are expected to have information about a sequence
+        with a preceding <code>&gt;</code> character, and the sequence is limited to AUTCG.
+    </p>
+
+    <p>
+        There are plenty of python libraries that can make sure that whatever you are receiving is what you
+        expect. In bioinformatics, <a href="https://biopython.org/wiki/SeqIO">Biopython's SeqIO</a> is
+        commonly used. You could use this to read a fasta file, and if it fails to read, delete the file.
+    </p>
+
+    <p>
+        But we won't do any of that on this website. Let's instead exploit this vulnerability to do some fun stuff.
+    </p>
+
+    <a href="{{ url_for('files.part2') }}"><button class="btn">Continue to part 2</button></a>
+    
     
 </div>
 

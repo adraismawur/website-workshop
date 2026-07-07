@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h3>Files part 2</h3>
+    
+    <p>
+        We will keep this website simple (you will have to use your imagination a little bit).
+        This websites takes a fasta file and puts it somewhere for analysis. This "somewhere"
+        also is the same location where the results of the analysis are stored.
+    </p>
+
+    <p>
+        To demonstrate, upload a fasta file and press Upload to see what happens:
+    </p>
+    
+    <h5>Remember the filename you uploaded, it will be needed later.</h5>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Click to select FASTA file</span>
+                {{ form.file }}
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        {{ form.submit }}
+    </form>
+    
+    
+    
+</div>
+
+{% endblock %}

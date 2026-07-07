@@ -9,7 +9,8 @@ from website_workshop.shell import bp_shell
 from website_workshop.files import bp_files
 from website_workshop.util.config import Config
 from website_workshop.util.db import get_db
-from website_workshop.xss import bp_xss
+from website_workshop.combo import bp_combo
+
 
 def create_app():
     app = Flask(__name__)
@@ -19,20 +20,21 @@ def create_app():
     app.secret_key = os.urandom(24)
 
     with app.app_context():
-        populate_db()   
-
+        populate_db()
 
     app.config.from_object(Config)
 
     return app
+
 
 def register_blueprints(app):
     app.register_blueprint(bp_main)
     app.register_blueprint(bp_sql)
     app.register_blueprint(bp_shell)
     app.register_blueprint(bp_files)
-    app.register_blueprint(bp_xss)
+    app.register_blueprint(bp_combo)
     return app
+
 
 def populate_db():
     db = get_db()
@@ -41,26 +43,16 @@ def populate_db():
 
     if len(r) > 0:
         return
-    
+
     mock_users = [
-        (
-            'admin',
-            datetime.now().isoformat()
-        ),
-        (
-            'guest',
-            datetime.now().isoformat()
-        ),
-        (
-            'Arjan Draisma',
-            datetime.now().isoformat()
-        ),
-        (
-            'Santa Clause',
-            datetime.now().isoformat()
-        )
+        ("admin", datetime.now().isoformat()),
+        ("guest", datetime.now().isoformat()),
+        ("Arjan Draisma", datetime.now().isoformat()),
+        ("Santa Clause", datetime.now().isoformat()),
     ]
 
-    db.executemany("INSERT OR IGNORE INTO users (name, created_at) VALUES (?, ?);", mock_users)
+    db.executemany(
+        "INSERT OR IGNORE INTO users (name, created_at) VALUES (?, ?);", mock_users
+    )
 
     db.commit()
